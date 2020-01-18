@@ -4,6 +4,7 @@ namespace Laratube\Http\Controllers;
 
 use Laratube\Models\Channel;
 use Illuminate\Http\Request;
+use Laratube\Http\Requests\Channel\Update;
 
 class ChannelController extends Controller
 {
@@ -14,7 +15,7 @@ class ChannelController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->only('update');
     }
 
     /**
@@ -77,8 +78,10 @@ class ChannelController extends Controller
      * @param  \Laratube\Models\Channel  $channel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Channel $channel)
+    public function update(Update $request, Channel $channel)
     {
+        $image = "";
+        ///////////// If File Exists then Save It /////////////
         if ($request->hasFile('image')) {
 
             /////////// Clear all images in this channel /////////
@@ -87,9 +90,20 @@ class ChannelController extends Controller
             /////////// Add new Uploaded image /////////
             $channel->addMediaFromRequest('image')->toMediaCollection('images');
 
-            return redirect(route('channel.show',$channel->id));
+            $image.= "with Image";
         }
-        return redirect()->back();
+
+
+
+        //////////// Update Channel In Database /////////////
+        $channel->name = request('name');
+        $channel->description = request('description');
+        $channel->save();
+
+
+        $message = "Channel Updated ".$image;
+
+        return redirect(route('channel.show',$channel->id))->with('status',$message);
     }
 
     /**

@@ -30,6 +30,13 @@ class Channel extends GeneralModel implements HasMedia
         return "https://img.icons8.com/ios/64/000000/camera.png";
     }
 
+    public function editable()
+    {
+        if (!auth()->check())   return false;
+
+        return $this->user_id == auth()->user()->id;
+    }
+
     public function registerMediaConversions(?Media $media = null)
     {
         $this->addMediaConversion('thumb')

@@ -11364,7 +11364,12 @@ a.text-dark:focus {
   width: 100px;
   height: 100px;
   position: relative;
-  cursor: pointer;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center;
   border: 2px solid rgba(0, 0, 0, 0.125);
 }
 
@@ -11372,8 +11377,10 @@ a.text-dark:focus {
   position: absolute;
   height: 100%;
   width: 100%;
+  cursor: pointer;
   display: -webkit-box;
   display: flex;
+  opacity: 1;
   -webkit-box-pack: center;
           justify-content: center;
   -webkit-box-align: center;
@@ -11387,6 +11394,7 @@ a.text-dark:focus {
   width: 100%;
   display: -webkit-box;
   display: flex;
+  opacity: 0;
   -webkit-box-pack: center;
           justify-content: center;
   -webkit-box-align: center;
