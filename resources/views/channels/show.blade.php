@@ -14,12 +14,12 @@
                     <form action="{{ route('channel.update',$channel->id) }}" method="post" enctype="multipart/form-data">
                         @csrf   @method('PATCH')
 
-                        
+
                         {{-- Image Field Start --}}
                         <div class="from-group row justify-content-center">
                             <div onclick="document.getElementById('image').click()" class="channel-avatar">
                                 <div class="channel-avatar-overlay">
-                                        <img src="https://img.icons8.com/ios/64/000000/camera.png">
+                                    <img src="{{ $channel->image() }}">
                                 </div>
                             </div>
                         </div>
