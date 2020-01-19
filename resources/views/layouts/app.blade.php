@@ -95,13 +95,13 @@
 
 <script>
 
-    window.auth_user = {!! auth()->user() !!}
+    window.auth_user = '{!! auth()->user() !!}'
 
     window.__auth = function () {
         try {
             return JSON.parse(auth_user);
         } catch (error) {
-            return null;
+            return false;
         }
     }
 

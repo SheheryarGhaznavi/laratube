@@ -11370,6 +11370,7 @@ a.text-dark:focus {
           justify-content: center;
   -webkit-box-align: center;
           align-items: center;
+  margin: 10px;
   border: 2px solid rgba(0, 0, 0, 0.125);
 }
 

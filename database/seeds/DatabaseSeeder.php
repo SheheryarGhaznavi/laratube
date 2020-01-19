@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use Laratube\Models\Channel;
 use Laratube\User;
+use Faker\Generator as Faker;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,7 +12,7 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker $faker)
     {
         $user1 = factory(User::class)->create([
             'email' => 'user1@gmail.com'
@@ -22,10 +23,12 @@ class DatabaseSeeder extends Seeder
 
 
         $channel1 = $user1->channel()->create([
-            'name' => $user1->name
+            'name' => $user1->name,
+            'description' => $faker->sentence('1000')
         ]);
         $channel2 = $user2->channel()->create([
-            'name' => $user2->name
+            'name' => $user2->name,
+            'description' => $faker->sentence('1000')
         ]);
 
 

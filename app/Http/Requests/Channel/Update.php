@@ -26,7 +26,7 @@ class Update extends FormRequest
         return [
             'name' => 'required',
             'image' => 'image',
-            'description' => 'required|max:1000'
+            'description' => 'required|max:10000'
         ];
     }
 }
