@@ -19,3 +19,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('channel','ChannelController');
+Route::resource('channel/{channel}/subscription','SubscriptionController');
