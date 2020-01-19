@@ -6,5 +6,7 @@ use Laratube\GeneralModel;
 
 class Subscription extends GeneralModel
 {
-    //
+    protected $fillable = [
+        'user_id'
+    ];
 }

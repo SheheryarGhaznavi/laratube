@@ -4,6 +4,7 @@ namespace Laratube\Http\Controllers;
 
 use Laratube\Models\Subscription;
 use Illuminate\Http\Request;
+use Laratube\Models\Channel;
 
 class SubscriptionController extends Controller
 {
@@ -33,9 +34,13 @@ class SubscriptionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Channel $channel)
     {
-        //
+        $channel->subscription()->create([
+            'user_id' => auth()->user()->id
+        ]);
+        return response()->json($channel->subscription);
+        
     }
 
     /**
@@ -78,8 +83,9 @@ class SubscriptionController extends Controller
      * @param  \Laratube\Models\Subscription  $subscription
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Subscription $subscription)
+    public function destroy(Channel $channel,Subscription $subscription)
     {
-        //
+        $subscription->delete();
+        return response()->json($channel->subscription);
     }
 }
