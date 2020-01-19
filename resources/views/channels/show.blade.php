@@ -27,6 +27,10 @@
                                 </div>
                             </div>
 
+                            {{-- Subscribe Button --}}
+                            @include('subscriptions.subscribe-button')
+                            {{-- Subscribe Button --}}
+
                             {{-- Hidden Input Field --}}
                             <input class="d-none" type="file" name="image" id="image">
                             {{-- Hidden Input Field --}}
@@ -67,6 +71,11 @@
                             <h4 class="text-center">{{ $channel->name }}</h4>
                             <p class="text-center">{{ $channel->description }}</p>
                         </div>
+                        
+                        {{-- Subscribe Button --}}
+                        @include('subscriptions.subscribe-button')
+                        {{-- Subscribe Button --}}
+
                     @endif
                 
                 
