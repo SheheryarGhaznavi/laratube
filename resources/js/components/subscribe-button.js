@@ -1,5 +1,4 @@
 import numeral from 'numeral'
-import Axios from 'axios';
 Vue.component('subscribe-button',{
     props: {
         initialSubscription: {

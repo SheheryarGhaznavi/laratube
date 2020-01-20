@@ -42,6 +42,11 @@ class Channel extends GeneralModel implements HasMedia
         return $this->hasMany(Subscription::class);
     }
 
+    public function video()
+    {
+        return $this->hasMany(Video::class);
+    }
+
     public function registerMediaConversions(?Media $media = null)
     {
         $this->addMediaConversion('thumb')

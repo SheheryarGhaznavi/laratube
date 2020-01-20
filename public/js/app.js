@@ -33216,6 +33216,8 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 __webpack_require__(/*! ./components/subscribe-button */ "./resources/js/components/subscribe-button.js");
 
+__webpack_require__(/*! ./components/upload-video */ "./resources/js/components/upload-video.js");
+
 var app = new Vue({
   el: '#app'
 });
@@ -33271,9 +33273,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var numeral__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! numeral */ "./node_modules/numeral/numeral.js");
 /* harmony import */ var numeral__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(numeral__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-
 
 Vue.component('subscribe-button', {
   props: {
@@ -33337,6 +33336,46 @@ Vue.component('subscribe-button', {
           _this.subscription = response.data;
         });
       }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/components/upload-video.js":
+/*!*************************************************!*\
+  !*** ./resources/js/components/upload-video.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+Vue.component('upload-video', {
+  props: {
+    channel: {
+      type: Object,
+      required: true,
+      "default": function _default() {
+        return {};
+      }
+    }
+  },
+  data: function data() {
+    return {
+      selected: false,
+      videos: []
+    };
+  },
+  methods: {
+    upload: function upload() {
+      this.selected = true;
+      this.videos = Array.from(this.$refs.video.files);
+      var uploaders = this.videos.map(function (video) {
+        var form = new FormData();
+        form.append('title', video.name);
+        form.append('video', video);
+        return axios.post('', form);
+      });
+      console.log(uploaders);
     }
   }
 });
