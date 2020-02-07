@@ -3,29 +3,18 @@
 namespace Laratube\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Laratube\Jobs\Video\ConvertForStreaming;
-use Laratube\Jobs\Video\CreateVideoThumbnail;
-use Laratube\Models\Channel;
+use Laratube\Models\Video;
 
-class UploadVideoController extends Controller
+class VideoController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Channel $channel)
+    public function index()
     {
-        return view('channels.upload',compact('channel'));
+        //
     }
 
     /**
@@ -44,18 +33,9 @@ class UploadVideoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Channel $channel,Request $request)
+    public function store(Request $request)
     {
-        $video = $channel->video()->create([
-            'title' => $request->title,
-            'path' => $request->video->store("channels/{$channel->id}")
-        ]);
-
-        $this->dispatch(new CreateVideoThumbnail($video));
-
-        $this->dispatch(new ConvertForStreaming($video));
-
-        return $video;
+        //
     }
 
     /**
@@ -64,9 +44,13 @@ class UploadVideoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Video $video)
     {
-        //
+        if (request()->wantsJson()) {
+            return $video;
+        } else {
+            return view('videos.show',compact('video'));
+        }
     }
 
     /**
