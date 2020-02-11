@@ -17,6 +17,7 @@ class CreateVideosTable extends Migration
             $table->uuid('id');
             $table->uuid('channel_id');
             $table->string('title');
+            $table->bigInteger('view')->default(0);
             $table->integer('percentage')->nullable();
             $table->string('thumbnail')->nullable();
             $table->text('description')->nullable();

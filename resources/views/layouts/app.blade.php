@@ -98,10 +98,6 @@
 
 <!-- Scripts -->
 
-<script src="{{ asset('js/app.js') }}"></script>
-
-@yield('scripts')
-
 <script>
 
     window.auth_user = '{!! auth()->user() !!}'
@@ -115,5 +111,9 @@
     }
 
 </script>
+
+<script src="{{ asset('js/app.js') }}"></script>
+
+@yield('scripts')
 
 </html>

@@ -3,6 +3,7 @@
 namespace Laratube\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Laratube\Http\Requests\Video\Update;
 use Laratube\Models\Video;
 
 class VideoController extends Controller
@@ -14,7 +15,7 @@ class VideoController extends Controller
      */
     public function index()
     {
-        //
+        $this->middleware('auth')->only('update');
     }
 
     /**
@@ -71,9 +72,13 @@ class VideoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Update $request, Video $video)
     {
-        //
+        $video->title = $request->title;
+        $video->description = $request->description;
+        $video->save();
+
+        return redirect()->back()->with('success','Video Successfully Updated!');
     }
 
     /**
@@ -85,5 +90,11 @@ class VideoController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function view(Video $video)
+    {
+        $video->increment('view');
+        return response()->json([]);
     }
 }

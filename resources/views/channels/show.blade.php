@@ -76,7 +76,9 @@
                         </div>
                         
                         {{-- Subscribe Button --}}
-                        @include('subscriptions.subscribe-button')
+                        <div class="text-center">
+                            <subscribe-button :channel="{{ $channel }}" :initial-subscription="{{ $channel->subscription }}" />
+                        </div>
                         {{-- Subscribe Button --}}
 
                     @endif
