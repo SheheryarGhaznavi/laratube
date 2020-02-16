@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
+Route::get('video/{video}/comment','CommentController@index');
 Route::get('vote/{video}/{type}','VoteController@toggle');
 Route::put('video/{video}/view','VideoController@view');
 Route::get('/home', 'HomeController@index')->name('home');

@@ -70,7 +70,6 @@ export default {
             if (type === 'up' && this.upVoted) return
 
             if (type === 'down' && this.downVoted) return
-                    console.log(this.upVoted)
 
             axios.get(`/vote/${this.entity_id}/${type}`)
             .then(({data}) => {

@@ -9,6 +9,8 @@ Vue.component('subscribe-button',require('./components/subscribe-button.vue').de
 
 Vue.component('vote',require('./components/vote.vue').default)
 
+Vue.component('comment',require('./components/comment.vue').default)
+
 require('./components/upload-video')
 
 const app = new Vue({

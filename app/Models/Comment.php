@@ -7,6 +7,7 @@ use Laratube\User;
 
 class Comment extends GeneralModel
 {
+    protected $with = ['user:id,name'];
     public function video()
     {
         return $this->belongsTo(Video::class);

@@ -27,6 +27,6 @@ class Video extends GeneralModel
 
     public function comment()
     {
-        return $this->hasMany(Comment::class)->whereNull('comment_ids');
+        return $this->hasMany(Comment::class)->whereNull('comment_id');
     }
 }
