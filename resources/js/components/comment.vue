@@ -1,6 +1,14 @@
 <template>
     
     <div class="card mt-5 p-5">
+
+        <div class="form-inline my-4 w-full">
+            <input type="text" class="form-control form-control-sm w-80">
+            <button class="btn btn-sm btn-primary">
+                <small>Add Comment</small>
+            </button>
+        </div>
+        <br>
         <div class="media" v-for="comment in comments.data" :key="comment.id">
             <avatar class="mr-3" :size="50" :username=comment.user.name></avatar>
 
@@ -11,29 +19,11 @@
                 <div class="form-inline my-4 w-full">
                     <input type="text" class="form-control form-control-sm w-80">
                     <button class="btn btn-sm btn-primary">
-                        <small>Add Comment</small>
+                        <small>Reply</small>
                     </button>
                 </div>
 
-                <div class="media mt-3">
-                    
-                    <a href="" class="mr-3">
-                        <img src="https://picsum.photos/id/42/200/200" width="50" height="50" alt="" class="rounded-circle mr-3" >
-                    </a>
-
-                    <div class="media-body">
-                        <h6 class="mt-0">Media Heading</h6>
-                        <small>akshgriuw jhgadkfhgw kuugfiubds dshhf sdf dsf sd f sdf ds f sdaf sdgfsafg saf gsag sd afaf sdafsdafsdafas</small>
-                        
-                        <div class="form-inline my-4 w-full">
-                            <input type="text" class="form-control form-control-sm w-80">
-                            <button class="btn btn-sm btn-primary">
-                                <small>Add Comment</small>
-                            </button>
-                        </div>
-                    </div>
-
-                </div>
+                <Reply :comment="comment"></Reply>
 
             </div>
         </div>
@@ -50,12 +40,14 @@
 
 <script>
 
+import Reply from './reply.vue'
 import Avatar from 'vue-avatar'
 
     export default {
 
         components: {
-            Avatar
+            Avatar,
+            Reply
         },
 
         props: ['video'],
