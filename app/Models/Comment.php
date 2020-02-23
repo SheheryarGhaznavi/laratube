@@ -7,7 +7,7 @@ use Laratube\User;
 
 class Comment extends GeneralModel
 {
-    protected $with = ['user:id,name'];
+    protected $with = ['user:id,name', 'vote'];
     protected $appends = ['replyCount'];
 
     public function video() {
@@ -20,6 +20,10 @@ class Comment extends GeneralModel
 
     public function getReplyCountAttribute() {
         return $this->reply->count();
+    }
+
+    public function vote(){
+        return $this->morphMany(Vote::class,'voteable');
     }
 
     public function reply(){

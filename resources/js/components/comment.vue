@@ -15,6 +15,8 @@
             <div class="media-body">
                 <h6 class="mt-0">{{ comment.user.name}}</h6>
                 <small>{{ comment.body }}</small>
+
+                <vote :default_vote="comment.vote" :entity_id="comment.id" :entity_owner="comment.user.id"> </vote>
                 
                 <div class="form-inline my-4 w-full">
                     <input type="text" class="form-control form-control-sm w-80">

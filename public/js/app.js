@@ -1989,6 +1989,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -21625,6 +21627,14 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("small", [_vm._v(_vm._s(comment.body))]),
+                _vm._v(" "),
+                _c("vote", {
+                  attrs: {
+                    default_vote: comment.vote,
+                    entity_id: comment.id,
+                    entity_owner: comment.user.id
+                  }
+                }),
                 _vm._v(" "),
                 _vm._m(1, true),
                 _vm._v(" "),
