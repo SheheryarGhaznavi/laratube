@@ -57,7 +57,8 @@ class ChannelController extends Controller
      */
     public function show(Channel $channel)
     {
-        return view('channels.show',compact('channel'));
+        $videos = $channel->video()->paginate(5);
+        return view('channels.show',compact('channel','videos'));
     }
 
     /**
