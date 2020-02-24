@@ -10,13 +10,6 @@
             <div class="media-body">
                 <h6 class="mt-0">{{reply.user.name}}</h6>
                 <small>{{reply.body}}</small>
-                
-                <div class="form-inline my-4 w-full">
-                    <input type="text" class="form-control form-control-sm w-80">
-                    <button class="btn btn-sm btn-primary">
-                        <small>Reply</small>
-                    </button>
-                </div>
             </div>
         </div>
         <div v-if="comment.replyCount > 0 && replies.next_page_url" class="text-center">
@@ -61,6 +54,16 @@ export default {
                     ]
                 }
             })
+        },
+
+        add(reply) {
+            this.replies = {
+                ...this.replies,
+                data : [
+                    reply,
+                    ...this.replies.data
+                ]
+            }
         }
     }
 

@@ -10,7 +10,7 @@
         </div>
         <br>
 
-        <SingleComment v-for="comment in comments.data" :key="comment.id" :comment="comment" />
+        <SingleComment v-for="comment in comments.data" :key="comment.id" :comment="comment" :video="video" />
 
         <div class="text-center">
             <button v-if="this.comments.next_page_url" @click="fetch()" class="btn btn-success">

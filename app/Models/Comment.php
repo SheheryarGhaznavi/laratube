@@ -28,6 +28,6 @@ class Comment extends GeneralModel
     }
 
     public function reply(){
-        return $this->hasMany(Comment::class,'comment_id')->whereNotNull('comment_id');
+        return $this->hasMany(Comment::class,'comment_id')->whereNotNull('comment_id')->orderBy('created_at','desc');
     }
 }
