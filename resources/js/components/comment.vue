@@ -9,26 +9,8 @@
             </button>
         </div>
         <br>
-        <div class="media" v-for="comment in comments.data" :key="comment.id">
-            <avatar class="mr-3" :size="50" :username=comment.user.name></avatar>
 
-            <div class="media-body">
-                <h6 class="mt-0">{{ comment.user.name}}</h6>
-                <small>{{ comment.body }}</small>
-
-                <vote :default_vote="comment.vote" :entity_id="comment.id" :entity_owner="comment.user.id"> </vote>
-                
-                <div class="form-inline my-4 w-full">
-                    <input type="text" class="form-control form-control-sm w-80">
-                    <button class="btn btn-sm btn-primary">
-                        <small>Reply</small>
-                    </button>
-                </div>
-
-                <Reply :comment="comment"></Reply>
-
-            </div>
-        </div>
+        <SingleComment v-for="comment in comments.data" :key="comment.id" :comment="comment" />
 
         <div class="text-center">
             <button v-if="this.comments.next_page_url" @click="fetch()" class="btn btn-success">
@@ -42,14 +24,12 @@
 
 <script>
 
-import Reply from './reply.vue'
-import Avatar from 'vue-avatar'
+import SingleComment from './single-comment.vue'
 
     export default {
 
         components: {
-            Avatar,
-            Reply
+            SingleComment
         },
 
         props: ['video'],
