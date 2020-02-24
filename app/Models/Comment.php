@@ -9,6 +9,7 @@ class Comment extends GeneralModel
 {
     protected $with = ['user:id,name', 'vote'];
     protected $appends = ['replyCount'];
+    protected $guarded = [];
 
     public function video() {
         return $this->belongsTo(Video::class);

@@ -8,6 +8,10 @@ use Laratube\Models\Video;
 
 class VideoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->only('update');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +19,7 @@ class VideoController extends Controller
      */
     public function index()
     {
-        $this->middleware('auth')->only('update');
+        
     }
 
     /**

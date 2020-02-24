@@ -2,9 +2,9 @@
     
     <div class="card mt-5 p-5">
 
-        <div class="form-inline my-4 w-full">
-            <input type="text" class="form-control form-control-sm w-80">
-            <button class="btn btn-sm btn-primary">
+        <div v-if="auth" class="form-inline my-4 w-full">
+            <input v-model="newComment" type="text" class="form-control form-control-sm w-80">
+            <button @click="add" class="btn btn-sm btn-primary">
                 <small>Add Comment</small>
             </button>
         </div>
@@ -58,10 +58,17 @@ import Avatar from 'vue-avatar'
             this.fetch();
         },
 
+        computed : {
+            auth() {
+                return __auth()
+            }
+        },
+
         data: () => ({
             comments: {
                 data: []
-            }
+            },
+            newComment: ''
         }),
 
         methods: {
@@ -74,6 +81,22 @@ import Avatar from 'vue-avatar'
                         data: [
                             ...this.comments.data,
                             ...data.data
+                        ]
+                    }
+                })
+            },
+
+            add() {
+                if (!this.newComment) return
+
+                axios.post(`/comment/${this.video.id}`,{
+                    body: this.newComment
+                }).then(({data}) => {
+                    this.comments = {
+                        ...this.comments,
+                        data: [
+                            data,
+                            ...this.comments.data
                         ]
                     }
                 })

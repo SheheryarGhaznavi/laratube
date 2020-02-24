@@ -20,6 +20,7 @@ Auth::routes();
 
 Route::get('video/{video}/comment','CommentController@index');
 Route::get('comment/{comment}/reply','CommentController@getReply');
+Route::post('comment/{video}','CommentController@store');
 Route::get('vote/{entityId}/{type}','VoteController@toggle');
 Route::put('video/{video}/view','VideoController@view');
 Route::get('/home', 'HomeController@index')->name('home');
